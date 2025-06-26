@@ -1,0 +1,31 @@
+name: Update Bookshelf
+
+on:
+  push:
+    paths:
+      - 'ebooks/**'         # 当 ebooks 目录内文件发生变化时触发
+      - '.github/workflows/**'
+  workflow_dispatch:       # 可手动触发
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run script to generate bookshelf.js
+        run: python generate_bookshelf.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bookshelf.js
+          git commit -m "🔄 自动更新书架列表" || echo "Nothing to commit"
+          git push
