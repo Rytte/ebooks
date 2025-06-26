@@ -1,5 +1,10 @@
 const books = [
   {
+    "title": "ESP-01S Relay v4.0---",
+    "author": "未知作者",
+    "file": "ebooks/ESP-01S Relay v4.0---.pdf"
+  },
+  {
     "title": "csapp",
     "author": "未知作者",
     "file": "ebooks/csapp.pdf"
