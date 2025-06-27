@@ -1,13 +1,19 @@
 ﻿<!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>📚 我的电子书书架</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>📚 我的电子书书架</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>📚 我的电子书书架</h1>
-    <div id="bookshelf" class="book-list"></div>
-    <script src="bookshelf.js?ts=<?= new Date().getTime() ?>"></script>
+  <h1>📚 我的电子书书架</h1>
+
+  <div id="category-menu" class="category-menu">
+    <!-- 分类按钮将动态生成 -->
+  </div>
+
+  <div id="bookshelf" class="book-list"></div>
+
+  <script src="bookshelf.js"></script>
 </body>
 </html>

@@ -1,47 +1,68 @@
 body {
-    font-family: "Microsoft YaHei", sans-serif;
-    background-color: #f4f4f4;
-    padding: 30px;
-    color: #333;
+  font-family: "Microsoft YaHei", sans-serif;
+  background-color: #f4f4f4;
+  padding: 30px;
+  color: #333;
 }
 
 h1 {
-    text-align: center;
-    margin-bottom: 40px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.category-menu {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.category-menu button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.category-menu button:hover {
+  background-color: #005fa3;
 }
 
 .book-list {
-    max-width: 700px;
-    margin: auto;
+  max-width: 700px;
+  margin: auto;
 }
 
 .book-item {
-    background: white;
-    margin-bottom: 15px;
-    padding: 15px 20px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: white;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .book-info {
-    text-align: left;
+  text-align: left;
 }
 
 .book-title {
-    font-weight: bold;
-    font-size: 1.1em;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .book-author {
-    font-size: 0.9em;
-    color: #666;
+  font-size: 0.9em;
+  color: #666;
 }
 
 .book-link a {
-    text-decoration: none;
-    color: #0077cc;
-    font-size: 0.95em;
+  text-decoration: none;
+  color: #0077cc;
+  font-size: 0.95em;
 }
