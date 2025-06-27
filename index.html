@@ -20,10 +20,14 @@
     const script = document.createElement('script');
     const timestamp = new Date().getTime(); // 获取当前时间戳
     script.src = `bookshelf.js?v=${timestamp}`; // 拼接时间戳到 URL 上
+    script.onload = function () {
+      renderBookshelf(); // bookshelf.js 加载完成后再执行渲染
+    };
     document.body.appendChild(script); // 动态插入到页面
   </script>
 
   <script>
+    // 渲染书架目录的函数
     function renderTreeList(nodes) {
       const ul = document.createElement("ul");
 
@@ -58,11 +62,12 @@
       return ul;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    // 页面加载完成后执行渲染
+    function renderBookshelf() {
       const container = document.getElementById("bookshelf");
-      const tree = renderTreeList(ebookTree); // 来自 bookshelf.js
+      const tree = renderTreeList(ebookTree); // 这里ebookTree来自bookshelf.js
       container.appendChild(tree);
-    });
+    }
   </script>
 
 </body>
