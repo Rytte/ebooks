@@ -1,129 +1,68 @@
-/* 主体设置 */
 body {
-    font-family: "Microsoft YaHei", sans-serif;
-    background-color: #f9fafb;
-    margin: 0;
-    padding: 30px;
-    color: #333;
-    line-height: 1.6;
+  font-family: "Microsoft YaHei", sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 40px;
+  color: #333;
 }
 
 h1 {
-    text-align: center;
-    font-size: 2.5em;
-    font-weight: bold;
-    margin-bottom: 30px;
-    color: #333;
-    text-transform: uppercase;
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 30px;
+  color: #222;
 }
 
-/* 分类菜单样式 */
-.category-menu {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
+.tree-view {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+  font-size: 1rem;
 }
 
-    .category-menu button {
-        padding: 12px 30px;
-        font-size: 1.2em;
-        cursor: pointer;
-        background-color: #0077cc;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        transition: background-color 0.3s ease;
-    }
-
-        .category-menu button:hover {
-            background-color: #005fa3;
-        }
-
-/* 书籍列表容器 */
-.book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    justify-items: center;
+ul {
+  list-style-type: none;
+  padding-left: 1em;
+  margin: 0;
 }
 
-.book-item {
-    background: white;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+li {
+  margin: 5px 0;
 }
 
-    .book-item:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
-
-/* 书籍标题、作者 */
-.book-info {
-    margin-bottom: 15px;
+.folder > .folder-label {
+  cursor: pointer;
+  font-weight: bold;
+  color: #0077cc;
+  display: block;
 }
 
-.book-title {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+.folder.collapsed > ul {
+  display: none;
 }
 
-.book-author {
-    font-size: 1em;
-    color: #777;
+.folder-label::before {
+  content: "? ";
+  display: inline-block;
+  margin-right: 5px;
+  transition: transform 0.2s ease;
 }
 
-/* 下载链接样式 */
-.book-link a {
-    text-decoration: none;
-    color: #0077cc;
-    font-size: 1em;
-    padding: 8px 20px;
-    border-radius: 20px;
-    border: 2px solid #0077cc;
-    transition: all 0.3s ease;
+.folder:not(.collapsed) > .folder-label::before {
+  transform: rotate(90deg);
 }
 
-    .book-link a:hover {
-        background-color: #0077cc;
-        color: white;
-        border-color: #005fa3;
-    }
+.file a {
+  text-decoration: none;
+  color: #333;
+  padding-left: 1em;
+  display: block;
+  transition: color 0.2s;
+}
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .category-menu button {
-        font-size: 1em;
-        padding: 10px 20px;
-    }
-
-    .book-list {
-        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    }
-
-    .book-item {
-        padding: 12px;
-    }
-
-    .book-title {
-        font-size: 1.1em;
-    }
-
-    .book-author {
-        font-size: 0.9em;
-    }
+.file a:hover {
+  color: #0077cc;
 }

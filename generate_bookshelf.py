@@ -1,72 +1,32 @@
 import os
 import json
 
-ebook_folder = "ebooks"
-output_file = "bookshelf.js"
+def build_tree(base_dir, current_path=""):
+    entries = []
+    full_path = os.path.join(base_dir, current_path)
 
-# 扫描目录，获取文件夹结构
-def scan_directory(folder):
-    categories = {}
-    for root, dirs, files in os.walk(folder):
-        # 获取相对路径的目录名称（相对于 ebooks/）
-        category = os.path.relpath(root, folder)
-        if category == ".":
-            category = "未分类"
-        categories[category] = []
+    for item in sorted(os.listdir(full_path)):
+        rel_path = os.path.join(current_path, item)
+        abs_path = os.path.join(base_dir, rel_path)
 
-        for file in files:
-            if file.endswith(".pdf"):
-                title = os.path.splitext(file)[0]
-                # 正确的路径加上 ebooks/ 前缀
-                relative_path = os.path.relpath(os.path.join(root, file), ".")
-                categories[category].append({
-                    "title": title,
-                    "author": "未知作者",
-                    "file": relative_path.replace("\\", "/")  # 兼容 Windows
-                })
-    return categories
+        if os.path.isdir(abs_path):
+            entries.append({
+                "type": "folder",
+                "name": item,
+                "children": build_tree(base_dir, rel_path)
+            })
+        elif item.endswith(".pdf"):
+            entries.append({
+                "type": "file",
+                "name": item,
+                "path": f"{base_dir}/{rel_path}".replace("\\", "/")
+            })
 
-# 获取分类数据
-book_categories = scan_directory(ebook_folder)
+    return entries
 
-# 写入 bookshelf.js
-with open(output_file, "w", encoding="utf-8") as f:
-    f.write("const bookCategories = ")
-    json.dump(book_categories, f, ensure_ascii=False, indent=2)
+tree = build_tree("ebooks")
+
+with open("bookshelf.js", "w", encoding="utf-8") as f:
+    f.write("const ebookTree = ")
+    json.dump(tree, f, ensure_ascii=False, indent=2)
     f.write(";\n")
-
-    f.write("""
-function renderBooks(category) {
-  const container = document.getElementById('bookshelf');
-  container.innerHTML = '';
-
-  const books = bookCategories[category];
-  books.forEach(book => {
-    const item = document.createElement('div');
-    item.className = 'book-item';
-    item.innerHTML = `
-      <div class="book-info">
-        <div class="book-title">📘 ${book.title}</div>
-        <div class="book-author">${book.author}</div>
-      </div>
-      <div class="book-link">
-        <a href="${book.file}" target="_blank">📥 阅读/下载</a>
-      </div>
-    `;
-    container.appendChild(item);
-  });
-}
-
-function renderCategories() {
-  const categories = Object.keys(bookCategories);
-  const menu = document.getElementById('category-menu');
-  categories.forEach(category => {
-    const button = document.createElement('button');
-    button.textContent = category;
-    button.onclick = () => renderBooks(category);
-    menu.appendChild(button);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', renderCategories);
-    """)

@@ -2,19 +2,52 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📚 我的电子书书架</title>
+  <title>📚 多级电子书书架</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>📚 我的电子书书架</h1>
+  <div id="bookshelf" class="tree-view"></div>
+  <script src="bookshelf.js"></script>
+  <script>
+    function renderTree(container, nodes) {
+      const ul = document.createElement("ul");
 
-  <div id="category-menu" class="category-menu">
-    <!-- 分类按钮将动态生成 -->
-  </div>
+      nodes.forEach(node => {
+        const li = document.createElement("li");
 
-  <div id="bookshelf" class="book-list"></div>
+        if (node.type === "folder") {
+          li.className = "folder";
+          const label = document.createElement("span");
+          label.textContent = "📁 " + node.name;
+          label.className = "folder-label";
+          label.onclick = () => {
+            li.classList.toggle("collapsed");
+          };
+          li.appendChild(label);
+          const subTree = renderTree(document.createElement("div"), node.children);
+          li.appendChild(subTree);
+        } else if (node.type === "file") {
+          li.className = "file";
+          const link = document.createElement("a");
+          link.href = node.path;
+          link.textContent = "📄 " + node.name;
+          link.target = "_blank";
+          li.appendChild(link);
+        }
 
-  <script src="bookshelf.js?ts=<?= new Date().getTime() ?>"></script>
+        ul.appendChild(li);
+      });
+
+      container.appendChild(ul);
+      return container;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("bookshelf");
+      renderTree(container, ebookTree);
+    });
+  </script>
 </body>
 </html>
