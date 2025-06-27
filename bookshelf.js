@@ -3,36 +3,36 @@ const bookCategories = {
     {
       "title": "ESP-01S Relay v4.0---",
       "author": "未知作者",
-      "file": "未分类/ESP-01S Relay v4.0---.pdf"
+      "file": "ebooks/ESP-01S Relay v4.0---.pdf"
     },
     {
       "title": "video_file_format_spec_v10",
       "author": "未知作者",
-      "file": "未分类/video_file_format_spec_v10.pdf"
+      "file": "ebooks/video_file_format_spec_v10.pdf"
     },
     {
       "title": "csapp",
       "author": "未知作者",
-      "file": "未分类/csapp.pdf"
+      "file": "ebooks/csapp.pdf"
     },
     {
       "title": "python",
       "author": "未知作者",
-      "file": "未分类/python.pdf"
+      "file": "ebooks/python.pdf"
     }
   ],
   "电路": [
     {
       "title": "asdasdasdasd",
       "author": "未知作者",
-      "file": "电路/asdasdasdasd.pdf"
+      "file": "ebooks/电路/asdasdasdasd.pdf"
     }
   ]
 };
 
 function renderBooks(category) {
   const container = document.getElementById('bookshelf');
-  container.innerHTML = '';  // 清空当前内容
+  container.innerHTML = '';
 
   const books = bookCategories[category];
   books.forEach(book => {
