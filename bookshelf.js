@@ -27,6 +27,13 @@ const bookCategories = {
       "author": "未知作者",
       "file": "ebooks/电路/asdasdasdasd.pdf"
     }
+  ],
+  "电路/stm32": [
+    {
+      "title": "stm32",
+      "author": "未知作者",
+      "file": "ebooks/电路/stm32/stm32.pdf"
+    }
   ]
 };
 
