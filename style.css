@@ -8,7 +8,7 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 2em;
+  font-size: 2.2em;
   margin-bottom: 30px;
   color: #222;
 }
@@ -18,14 +18,15 @@ h1 {
   margin: auto;
   background: white;
   border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+  padding: 25px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.05);
   font-size: 1rem;
 }
 
+/* 基本结构 */
 ul {
   list-style-type: none;
-  padding-left: 1em;
+  padding-left: 1.2em;
   margin: 0;
 }
 
@@ -33,32 +34,39 @@ li {
   margin: 5px 0;
 }
 
+/* 文件夹样式 */
 .folder > .folder-label {
   cursor: pointer;
   font-weight: bold;
   color: #0077cc;
   display: block;
-}
-
-.folder.collapsed > ul {
-  display: none;
+  position: relative;
+  padding-left: 20px;
 }
 
 .folder-label::before {
-  content: "? ";
-  display: inline-block;
-  margin-right: 5px;
+  content: "▶";
+  position: absolute;
+  left: 0;
   transition: transform 0.2s ease;
+  font-size: 0.8em;
 }
 
+/* 展开状态箭头旋转 */
 .folder:not(.collapsed) > .folder-label::before {
   transform: rotate(90deg);
 }
 
+/* 折叠子列表 */
+.folder.collapsed > ul {
+  display: none;
+}
+
+/* 文件链接样式 */
 .file a {
   text-decoration: none;
   color: #333;
-  padding-left: 1em;
+  padding-left: 1.6em;
   display: block;
   transition: color 0.2s;
 }

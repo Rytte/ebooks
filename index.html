@@ -8,25 +8,32 @@
 </head>
 <body>
   <h1>📚 我的电子书书架</h1>
+
   <div id="bookshelf" class="tree-view"></div>
+
+  <!-- 引入自动生成的 bookshelf.js -->
   <script src="bookshelf.js"></script>
+
   <script>
-    function renderTree(container, nodes) {
+    // 构建嵌套书籍目录的 HTML 结构
+    function renderTreeList(nodes) {
       const ul = document.createElement("ul");
 
       nodes.forEach(node => {
         const li = document.createElement("li");
 
         if (node.type === "folder") {
-          li.className = "folder";
+          li.className = "folder collapsed";  // 默认折叠
+
           const label = document.createElement("span");
           label.textContent = "📁 " + node.name;
           label.className = "folder-label";
           label.onclick = () => {
             li.classList.toggle("collapsed");
           };
+
           li.appendChild(label);
-          const subTree = renderTree(document.createElement("div"), node.children);
+          const subTree = renderTreeList(node.children);  // 递归构建子树
           li.appendChild(subTree);
         } else if (node.type === "file") {
           li.className = "file";
@@ -40,13 +47,14 @@
         ul.appendChild(li);
       });
 
-      container.appendChild(ul);
-      return container;
+      return ul;
     }
 
+    // 渲染入口
     document.addEventListener("DOMContentLoaded", () => {
       const container = document.getElementById("bookshelf");
-      renderTree(container, ebookTree);
+      const tree = renderTreeList(ebookTree); // ebookTree 来自 bookshelf.js
+      container.appendChild(tree);
     });
   </script>
 </body>
