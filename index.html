@@ -1,61 +1,69 @@
 ﻿<!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <title>📘 Ebook Library</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>📘 Ebook Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="page-header">
-        <h1>📘 Ebook Library</h1>
-        <p class="subtitle">Explore your curated collection of digital books</p>
-    </header>
+  <header class="page-header">
+    <h1>📘 Ebook Library</h1>
+    <p class="subtitle">Explore your curated collection of digital books</p>
+  </header>
 
-    <div id="bookshelf" class="tree-view"></div>
+  <div id="bookshelf" class="tree-view"></div>
 
-    <script src="bookshelf.js"></script>
-    <script>
-        function renderTreeList(nodes) {
-            const ul = document.createElement("ul");
+  <!-- 动态加载 JS 文件并附加时间戳 -->
+  <script>
+    const script = document.createElement('script');
+    const timestamp = new Date().getTime(); // 获取当前时间戳
+    script.src = `bookshelf.js?v=${timestamp}`; // 拼接时间戳到 URL 上
+    document.body.appendChild(script); // 动态插入到页面
+  </script>
 
-            nodes.forEach(node => {
-                const li = document.createElement("li");
+  <script>
+    function renderTreeList(nodes) {
+      const ul = document.createElement("ul");
 
-                if (node.type === "folder") {
-                    li.className = "folder collapsed";
+      nodes.forEach(node => {
+        const li = document.createElement("li");
 
-                    const label = document.createElement("span");
-                    label.textContent = "📁 " + node.name;
-                    label.className = "folder-label";
-                    label.onclick = () => {
-                        li.classList.toggle("collapsed");
-                    };
+        if (node.type === "folder") {
+          li.className = "folder collapsed";
 
-                    li.appendChild(label);
-                    const subTree = renderTreeList(node.children);
-                    li.appendChild(subTree);
-                } else if (node.type === "file") {
-                    li.className = "file";
-                    const link = document.createElement("a");
-                    link.href = node.path;
-                    link.textContent = "📄 " + node.name;
-                    link.target = "_blank";
-                    li.appendChild(link);
-                }
+          const label = document.createElement("span");
+          label.textContent = "📁 " + node.name;
+          label.className = "folder-label";
+          label.onclick = () => {
+            li.classList.toggle("collapsed");
+          };
 
-                ul.appendChild(li);
-            });
-
-            return ul;
+          li.appendChild(label);
+          const subTree = renderTreeList(node.children);
+          li.appendChild(subTree);
+        } else if (node.type === "file") {
+          li.className = "file";
+          const link = document.createElement("a");
+          link.href = node.path;
+          link.textContent = "📄 " + node.name;
+          link.target = "_blank";
+          li.appendChild(link);
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const container = document.getElementById("bookshelf");
-            const tree = renderTreeList(ebookTree); // 来自 bookshelf.js
-            container.appendChild(tree);
-        });
-    </script>
+        ul.appendChild(li);
+      });
+
+      return ul;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const container = document.getElementById("bookshelf");
+      const tree = renderTreeList(ebookTree); // 来自 bookshelf.js
+      container.appendChild(tree);
+    });
+  </script>
+
 </body>
 </html>
