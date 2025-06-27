@@ -1,73 +1,44 @@
-const bookCategories = {
-  "未分类": [
-    {
-      "title": "ESP-01S Relay v4.0---",
-      "author": "未知作者",
-      "file": "ebooks/ESP-01S Relay v4.0---.pdf"
-    },
-    {
-      "title": "video_file_format_spec_v10",
-      "author": "未知作者",
-      "file": "ebooks/video_file_format_spec_v10.pdf"
-    },
-    {
-      "title": "csapp",
-      "author": "未知作者",
-      "file": "ebooks/csapp.pdf"
-    },
-    {
-      "title": "python",
-      "author": "未知作者",
-      "file": "ebooks/python.pdf"
-    }
-  ],
-  "电路": [
-    {
-      "title": "asdasdasdasd",
-      "author": "未知作者",
-      "file": "ebooks/电路/asdasdasdasd.pdf"
-    }
-  ],
-  "电路/stm32": [
-    {
-      "title": "stm32",
-      "author": "未知作者",
-      "file": "ebooks/电路/stm32/stm32.pdf"
-    }
-  ]
-};
-
-function renderBooks(category) {
-  const container = document.getElementById('bookshelf');
-  container.innerHTML = '';
-
-  const books = bookCategories[category];
-  books.forEach(book => {
-    const item = document.createElement('div');
-    item.className = 'book-item';
-    item.innerHTML = `
-      <div class="book-info">
-        <div class="book-title">📘 ${book.title}</div>
-        <div class="book-author">${book.author}</div>
-      </div>
-      <div class="book-link">
-        <a href="${book.file}" target="_blank">📥 阅读/下载</a>
-      </div>
-    `;
-    container.appendChild(item);
-  });
-}
-
-function renderCategories() {
-  const categories = Object.keys(bookCategories);
-  const menu = document.getElementById('category-menu');
-  categories.forEach(category => {
-    const button = document.createElement('button');
-    button.textContent = category;
-    button.onclick = () => renderBooks(category);
-    menu.appendChild(button);
-  });
-}
-
-document.addEventListener('DOMContentLoaded', renderCategories);
-    
+const ebookTree = [
+  {
+    "type": "file",
+    "name": "ESP-01S Relay v4.0---.pdf",
+    "path": "ebooks/ESP-01S Relay v4.0---.pdf"
+  },
+  {
+    "type": "file",
+    "name": "csapp.pdf",
+    "path": "ebooks/csapp.pdf"
+  },
+  {
+    "type": "file",
+    "name": "python.pdf",
+    "path": "ebooks/python.pdf"
+  },
+  {
+    "type": "file",
+    "name": "video_file_format_spec_v10.pdf",
+    "path": "ebooks/video_file_format_spec_v10.pdf"
+  },
+  {
+    "type": "folder",
+    "name": "电路",
+    "children": [
+      {
+        "type": "file",
+        "name": "asdasdasdasd.pdf",
+        "path": "ebooks/电路/asdasdasdasd.pdf"
+      },
+      {
+        "type": "folder",
+        "name": "stm32",
+        "children": [
+          {
+            "type": "file",
+            "name": "stm32.pdf",
+            "path": "ebooks/电路/stm32/stm32.pdf"
+          }
+        ]
+      }
+    ]
+  }
+];
