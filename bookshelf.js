@@ -72,8 +72,33 @@ const ebookTree = [
     "children": [
       {
         "type": "file",
+        "name": "N5语法超详细总结.pdf",
+        "path": "ebooks/教材/N5语法超详细总结.pdf"
+      },
+      {
+        "type": "file",
+        "name": "汇编语言（第4版）.pdf",
+        "path": "ebooks/教材/汇编语言（第4版）.pdf"
+      },
+      {
+        "type": "file",
+        "name": "电路分析基础 第5版 学习指导 (李瀚荪 吴锡龙) (Z-Library).pdf",
+        "path": "ebooks/教材/电路分析基础 第5版 学习指导 (李瀚荪 吴锡龙) (Z-Library).pdf"
+      },
+      {
+        "type": "file",
         "name": "电路分析基础（第五版）（上） (李瀚荪) (Z-Library).pdf",
         "path": "ebooks/教材/电路分析基础（第五版）（上） (李瀚荪) (Z-Library).pdf"
+      },
+      {
+        "type": "file",
+        "name": "电路分析基础（第五版）（下） (李瀚荪) (Z-Library).pdf",
+        "path": "ebooks/教材/电路分析基础（第五版）（下） (李瀚荪) (Z-Library).pdf"
+      },
+      {
+        "type": "file",
+        "name": "鸟哥的linux私房菜.pdf",
+        "path": "ebooks/教材/鸟哥的linux私房菜.pdf"
       }
     ]
   }
