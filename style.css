@@ -1,18 +1,37 @@
+/* 全局样式 */
 body {
-  font-family: "Microsoft YaHei", sans-serif;
-  background-color: #f7f9fc;
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  background-color: #f4f6f8;
   margin: 0;
-  padding: 40px;
+  padding: 0;
   color: #333;
 }
 
-h1 {
+/* 顶部标题区 */
+.page-header {
   text-align: center;
-  font-size: 2.2em;
-  margin-bottom: 30px;
-  color: #222;
+  padding: 60px 20px 30px;
+  background-color: #e8f0fe;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 40px;
 }
 
+.page-header h1 {
+  font-size: 2.8em;
+  color: #2b4c7e;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.page-header .subtitle {
+  font-size: 1.1em;
+  color: #5c6f88;
+  margin-top: 0;
+  letter-spacing: 0.5px;
+}
+
+/* 书架区域 */
 .tree-view {
   max-width: 800px;
   margin: auto;
@@ -23,7 +42,7 @@ h1 {
   font-size: 1rem;
 }
 
-/* 基本结构 */
+/* 列表结构 */
 ul {
   list-style-type: none;
   padding-left: 1.2em;
@@ -52,12 +71,12 @@ li {
   font-size: 0.8em;
 }
 
-/* 展开状态箭头旋转 */
+/* 展开箭头旋转 */
 .folder:not(.collapsed) > .folder-label::before {
   transform: rotate(90deg);
 }
 
-/* 折叠子列表 */
+/* 折叠隐藏子目录 */
 .folder.collapsed > ul {
   display: none;
 }

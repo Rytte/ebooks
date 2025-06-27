@@ -1,61 +1,61 @@
 ﻿<!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <title>📚 多级电子书书架</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>📘 Ebook Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>📚 我的电子书书架</h1>
 
-  <div id="bookshelf" class="tree-view"></div>
+    <header class="page-header">
+        <h1>📘 Ebook Library</h1>
+        <p class="subtitle">Explore your curated collection of digital books</p>
+    </header>
 
-  <!-- 引入自动生成的 bookshelf.js -->
-  <script src="bookshelf.js"></script>
+    <div id="bookshelf" class="tree-view"></div>
 
-  <script>
-    // 构建嵌套书籍目录的 HTML 结构
-    function renderTreeList(nodes) {
-      const ul = document.createElement("ul");
+    <script src="bookshelf.js"></script>
+    <script>
+        function renderTreeList(nodes) {
+            const ul = document.createElement("ul");
 
-      nodes.forEach(node => {
-        const li = document.createElement("li");
+            nodes.forEach(node => {
+                const li = document.createElement("li");
 
-        if (node.type === "folder") {
-          li.className = "folder collapsed";  // 默认折叠
+                if (node.type === "folder") {
+                    li.className = "folder collapsed";
 
-          const label = document.createElement("span");
-          label.textContent = "📁 " + node.name;
-          label.className = "folder-label";
-          label.onclick = () => {
-            li.classList.toggle("collapsed");
-          };
+                    const label = document.createElement("span");
+                    label.textContent = "📁 " + node.name;
+                    label.className = "folder-label";
+                    label.onclick = () => {
+                        li.classList.toggle("collapsed");
+                    };
 
-          li.appendChild(label);
-          const subTree = renderTreeList(node.children);  // 递归构建子树
-          li.appendChild(subTree);
-        } else if (node.type === "file") {
-          li.className = "file";
-          const link = document.createElement("a");
-          link.href = node.path;
-          link.textContent = "📄 " + node.name;
-          link.target = "_blank";
-          li.appendChild(link);
+                    li.appendChild(label);
+                    const subTree = renderTreeList(node.children);
+                    li.appendChild(subTree);
+                } else if (node.type === "file") {
+                    li.className = "file";
+                    const link = document.createElement("a");
+                    link.href = node.path;
+                    link.textContent = "📄 " + node.name;
+                    link.target = "_blank";
+                    li.appendChild(link);
+                }
+
+                ul.appendChild(li);
+            });
+
+            return ul;
         }
 
-        ul.appendChild(li);
-      });
-
-      return ul;
-    }
-
-    // 渲染入口
-    document.addEventListener("DOMContentLoaded", () => {
-      const container = document.getElementById("bookshelf");
-      const tree = renderTreeList(ebookTree); // ebookTree 来自 bookshelf.js
-      container.appendChild(tree);
-    });
-  </script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("bookshelf");
+            const tree = renderTreeList(ebookTree); // 来自 bookshelf.js
+            container.appendChild(tree);
+        });
+    </script>
 </body>
 </html>
